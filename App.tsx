@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { sample, sampleSize } from 'lodash';
 
+import SuccessPage from './SuccessPage';
+
 import fidel from './fidel.json';
 
 export default function App() {
@@ -43,48 +45,34 @@ export default function App() {
     setCurrentLetter(sample(newQueue));
   }
 
-    function renderStuff() {
-      return(
-        <>
-          <Text style={[styles.fontSize96]}>{currentLetter?.character}</Text>
-          <Text style={[styles.fontSize48]}>
-            {shouldShowHelp ? currentLetter?.transliteration : "_"}
-          </Text>
-        </>
-      )
-    }
-
-  function renderSuccess() {
-    return (
-      <>
-        <Text style={[styles.fontSize96]}>Yay!</Text>
-        <Button title="Restart" onPress={handleRestartPress}></Button>
-      </>
-    )
-  }
+  if (!queue.length) return <SuccessPage handleRestartPress={handleRestartPress} styles={styles}/>;
 
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      {queue.length ? renderStuff() : renderSuccess()}
-      {!!queue.length && <Text style={styles.fontSize16}>{queue.length} left</Text>}
-      {!!queue.length && <View style={styles.buttonArea}>
+
+      <Text style={[styles.fontSize96]}>{currentLetter?.character}</Text>
+      <Text style={[styles.fontSize48]}>
+        {shouldShowHelp ? currentLetter?.transliteration : "_"}
+      </Text>
+
+      <Text style={[styles.fontSize16, { color: secondaryTextColor }]}>{queue.length} left</Text>
+      <View style={styles.buttonArea}>
         <TouchableOpacity style={styles.xButtonOpacity} onPress={handleXPress}>
           <Text style={styles.fontSize24}>❌</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.checkButtonOpacity} onPress={handleCheckPress}>
           <Text style={styles.fontSize24}>✅</Text>
         </TouchableOpacity>
-      </View>}
+      </View>
 
-      {!!queue.length && <TouchableOpacity style={styles.helpButtonOpacity} onPress={() => setShouldShowHelp(!shouldShowHelp)}>
+      <TouchableOpacity style={styles.helpButtonOpacity} onPress={() => setShouldShowHelp(!shouldShowHelp)}>
         <Text style={[styles.fontSize16, { color: secondaryTextColor }]}>Toggle Help</Text>
-      </TouchableOpacity>}
+      </TouchableOpacity>
     </View>
   );
 }
 
-const primaryTextColor = '#fff';
 const secondaryTextColor = '#999';
 
 const styles = StyleSheet.create({
