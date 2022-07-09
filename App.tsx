@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { sample, sampleSize } from 'lodash';
 
 import fidel from './fidel.json';
@@ -43,38 +43,49 @@ export default function App() {
     setCurrentLetter(sample(newQueue));
   }
 
+    function renderStuff() {
+      return(
+        <>
+          <Text style={[styles.fontSize96]}>{currentLetter?.character}</Text>
+          <Text style={[styles.fontSize48]}>
+            {shouldShowHelp ? currentLetter?.transliteration : "_"}
+          </Text>
+        </>
+      )
+    }
+
   function renderSuccess() {
     return (
       <>
-        <Text>Yay!</Text>
+        <Text style={[styles.fontSize96]}>Yay!</Text>
         <Button title="Restart" onPress={handleRestartPress}></Button>
-      </>
-    )
-  }
-
-  function renderStuff() {
-    return(
-      <>
-        <Text style={[styles.text, styles.character]}>{currentLetter?.character}</Text>
-        <Text style={[styles.text, styles.transliteration]}>
-          {shouldShowHelp ? currentLetter?.transliteration : "_"}
-        </Text>
       </>
     )
   }
 
   return (
     <View style={styles.container}>
-      {queue.length ? renderStuff() : renderSuccess()}
       <StatusBar style="auto" />
-      {queue.length > 0 && <View style={styles.buttonArea}>
-        <Button title="❌" onPress={handleXPress}></Button>
-        <Button title="✅" onPress={handleCheckPress}></Button>
+      {queue.length ? renderStuff() : renderSuccess()}
+      {!!queue.length && <Text style={styles.fontSize16}>{queue.length} left</Text>}
+      {!!queue.length && <View style={styles.buttonArea}>
+        <TouchableOpacity style={styles.xButtonOpacity} onPress={handleXPress}>
+          <Text style={styles.fontSize24}>❌</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.checkButtonOpacity} onPress={handleCheckPress}>
+          <Text style={styles.fontSize24}>✅</Text>
+        </TouchableOpacity>
       </View>}
-      <Button title="Toggle Help" onPress={() => setShouldShowHelp(!shouldShowHelp)}></Button>
+
+      {!!queue.length && <TouchableOpacity style={styles.helpButtonOpacity} onPress={() => setShouldShowHelp(!shouldShowHelp)}>
+        <Text style={[styles.fontSize16, { color: secondaryTextColor }]}>Toggle Help</Text>
+      </TouchableOpacity>}
     </View>
   );
 }
+
+const primaryTextColor = '#fff';
+const secondaryTextColor = '#999';
 
 const styles = StyleSheet.create({
   container: {
@@ -83,26 +94,38 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-evenly',
   },
+  fontSize96: { fontSize: 96 },
+  fontSize48: { fontSize: 48 },
+  fontSize24: { fontSize: 24 },
+  fontSize16: { fontSize: 16 },
   buttonArea: {
-    backgroundColor: '#fff',
-    height: 100,
-    width: '100%',
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
   },
-  yesButton: {
-    height: 100,
+  xButtonOpacity: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 96,
+    width: '50%',
+    backgroundColor: '#f88',
+    borderRadius: 40,
+    margin: 5,
+  },
+  checkButtonOpacity: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 96,
     width: '50%',
     backgroundColor: '#0f8',
+    borderRadius: 40,
+    margin: 5,
   },
-  text: {
-    color: '#ff0000',
-  },
-  character: {
-    fontSize: 100,
-  },
-  transliteration: {
-    fontSize: 50,
+  helpButtonOpacity: {
+    borderWidth: 5,
+    borderColor: secondaryTextColor,
+    width: '80%',
+    minHeight: 96,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 40,
   },
 });
