@@ -8,7 +8,7 @@ import SuccessPage from './SuccessPage';
 import fidel from './fidel.json';
 
 export default function App() {
-  const [shouldShowHelp, setShouldShowHelp] = useState(false);
+  const [showAnswer, setShowAnswer] = useState(false);
   const [queue, setQueue] = useState(generateFidelSample());
   const [currentLetter, setCurrentLetter] = useState(sample(queue));
 
@@ -23,12 +23,14 @@ export default function App() {
   function handleXPress() {
     console.log(`❌ was pressed for ${currentLetter?.character}`, new Date())
 
-    setShouldShowHelp(true);
+    const timeoutDuration = showAnswer ? 0 : 1000
+
+    setShowAnswer(true);
     setTimeout(() => {
-      setShouldShowHelp(false);
+      setShowAnswer(false);
       const nextLetter = queue.length === 1 ? sample(queue) : sample(queueWithoutCurrentLetter());
       setCurrentLetter(nextLetter);
-    }, 1000)
+    }, timeoutDuration)
   }
 
   function handleCheckPress() {
@@ -36,7 +38,7 @@ export default function App() {
 
     const newQueue = queueWithoutCurrentLetter();
 
-    setShouldShowHelp(false);
+    setShowAnswer(false);
     setQueue(newQueue);
     setCurrentLetter(sample(newQueue));
   }
@@ -61,24 +63,26 @@ export default function App() {
 
       <Text style={[styles.fontSize96]}>{currentLetter?.character}</Text>
       <Text style={[styles.fontSize48]}>
-        {shouldShowHelp ? currentLetter?.transliteration : "_"}
+        {showAnswer ? currentLetter?.transliteration : "_"}
       </Text>
 
       <Text style={[styles.fontSize16, { color: secondaryTextColor }]}>{queue.length} left</Text>
       <View style={styles.allButtonsContainer}>
 
         <View style={styles.answerButtonsContainer}>
-          <TouchableOpacity style={styles.xButtonOpacity} onPress={handleXPress}>
+          <TouchableOpacity style={styles.xOpacity} onPress={handleXPress}>
             <Text style={styles.fontSize24}>❌</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.checkButtonOpacity} onPress={handleCheckPress}>
+          <TouchableOpacity style={styles.checkOpacity} onPress={handleCheckPress}>
             <Text style={styles.fontSize24}>✅</Text>
           </TouchableOpacity>
         </View>
 
         <View>
-          <TouchableOpacity style={styles.helpButtonOpacity} onPress={() => setShouldShowHelp(!shouldShowHelp)}>
-            <Text style={[styles.fontSize16, { color: secondaryTextColor }]}>Show Answer</Text>
+          <TouchableOpacity style={styles.toggleAnswerOpacity} onPress={() => setShowAnswer(!showAnswer)}>
+            <Text style={[styles.fontSize16, { color: secondaryTextColor }]}>
+              {showAnswer ? 'Hide' : 'Show'} Answer
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -106,7 +110,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  xButtonOpacity: {
+  xOpacity: {
     justifyContent: 'center',
     alignItems: 'center',
     height: 96,
@@ -114,7 +118,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f88',
     borderRadius: 40,
   },
-  checkButtonOpacity: {
+  checkOpacity: {
     justifyContent: 'center',
     alignItems: 'center',
     height: 96,
@@ -122,7 +126,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#0f8',
     borderRadius: 40,
   },
-  helpButtonOpacity: {
+  toggleAnswerOpacity: {
     borderWidth: 5,
     borderColor: secondaryTextColor,
     marginTop: 12,
