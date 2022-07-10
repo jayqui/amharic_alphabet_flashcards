@@ -26,16 +26,17 @@ export default function App() {
     setShouldShowHelp(true);
     setTimeout(() => {
       setShouldShowHelp(false);
-      setCurrentLetter(sample(queue));
+      const nextLetter = queue.length === 1 ? sample(queue) : sample(queueWithoutCurrentLetter());
+      setCurrentLetter(nextLetter);
     }, 1000)
   }
 
   function handleCheckPress() {
     console.log(`✅ was pressed for ${currentLetter?.character}`, new Date())
 
-    const newQueue = queue.filter((ele: { character: string; }) =>
-      ele.character !== currentLetter?.character);
+    const newQueue = queueWithoutCurrentLetter();
 
+    setShouldShowHelp(false);
     setQueue(newQueue);
     setCurrentLetter(sample(newQueue));
   }
@@ -44,6 +45,12 @@ export default function App() {
     const newQueue = generateFidelSample();
     setQueue(newQueue);
     setCurrentLetter(sample(newQueue));
+  }
+
+  function queueWithoutCurrentLetter() {
+    return queue.filter((ele: { character: string; }) => (
+      ele.character !== currentLetter?.character)
+    );
   }
 
   if (!queue.length) return <SuccessPage handleRestartPress={handleRestartPress} styles={styles}/>;
@@ -68,7 +75,7 @@ export default function App() {
       </View>
 
       <TouchableOpacity style={styles.helpButtonOpacity} onPress={() => setShouldShowHelp(!shouldShowHelp)}>
-        <Text style={[styles.fontSize16, { color: secondaryTextColor }]}>Toggle Help</Text>
+        <Text style={[styles.fontSize16, { color: secondaryTextColor }]}>Show Answer</Text>
       </TouchableOpacity>
     </View>
   );
@@ -89,6 +96,7 @@ const styles = StyleSheet.create({
   fontSize16: { fontSize: 16 },
   buttonArea: {
     flexDirection: 'row',
+    width: '80%',
   },
   xButtonOpacity: {
     justifyContent: 'center',
