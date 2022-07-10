@@ -65,18 +65,23 @@ export default function App() {
       </Text>
 
       <Text style={[styles.fontSize16, { color: secondaryTextColor }]}>{queue.length} left</Text>
-      <View style={styles.buttonArea}>
-        <TouchableOpacity style={styles.xButtonOpacity} onPress={handleXPress}>
-          <Text style={styles.fontSize24}>❌</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.checkButtonOpacity} onPress={handleCheckPress}>
-          <Text style={styles.fontSize24}>✅</Text>
-        </TouchableOpacity>
-      </View>
+      <View style={styles.allButtonsContainer}>
 
-      <TouchableOpacity style={styles.helpButtonOpacity} onPress={() => setShouldShowHelp(!shouldShowHelp)}>
-        <Text style={[styles.fontSize16, { color: secondaryTextColor }]}>Show Answer</Text>
-      </TouchableOpacity>
+        <View style={styles.answerButtonsContainer}>
+          <TouchableOpacity style={styles.xButtonOpacity} onPress={handleXPress}>
+            <Text style={styles.fontSize24}>❌</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.checkButtonOpacity} onPress={handleCheckPress}>
+            <Text style={styles.fontSize24}>✅</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View>
+          <TouchableOpacity style={styles.helpButtonOpacity} onPress={() => setShouldShowHelp(!shouldShowHelp)}>
+            <Text style={[styles.fontSize16, { color: secondaryTextColor }]}>Show Answer</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
   );
 }
@@ -94,32 +99,33 @@ const styles = StyleSheet.create({
   fontSize48: { fontSize: 48 },
   fontSize24: { fontSize: 24 },
   fontSize16: { fontSize: 16 },
-  buttonArea: {
-    flexDirection: 'row',
+  allButtonsContainer: {
     width: '80%',
+  },
+  answerButtonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   xButtonOpacity: {
     justifyContent: 'center',
     alignItems: 'center',
     height: 96,
-    width: '50%',
+    width: '48.5%',
     backgroundColor: '#f88',
     borderRadius: 40,
-    margin: 5,
   },
   checkButtonOpacity: {
     justifyContent: 'center',
     alignItems: 'center',
     height: 96,
-    width: '50%',
+    width: '48.5%',
     backgroundColor: '#0f8',
     borderRadius: 40,
-    margin: 5,
   },
   helpButtonOpacity: {
     borderWidth: 5,
     borderColor: secondaryTextColor,
-    width: '80%',
+    marginTop: 12,
     minHeight: 96,
     justifyContent: 'center',
     alignItems: 'center',
