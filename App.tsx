@@ -13,6 +13,7 @@ export default function App() {
   const [currentLetter, setCurrentLetter] = useState(sample(queue));
 
   console.log('queue.length', queue.length)
+  console.log('currentLetter?.character', currentLetter?.character)
   console.log('queue:', queue.map((x) => x.character));
 
   function generateFidelSample() {
@@ -36,7 +37,7 @@ export default function App() {
       ele.character !== currentLetter?.character);
 
     setQueue(newQueue);
-    setCurrentLetter(sample(queue));
+    setCurrentLetter(sample(newQueue));
   }
 
   function handleRestartPress() {
