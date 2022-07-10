@@ -4,13 +4,15 @@
 
 This simple app aims to provide practice learning these letters. (As of July 2022, it is aimed at English speakers only.)
 
+![prototype demo](./readme_assets/prototype_demo.png)
+
 # Project Status
 
 The project is in active development as of July 2022. The hope is to release versions to various app stores sometime within 2022.
 
 # Development
 
-This project is built using [React Native](https://reactnative.dev/), the wonderful that allows you to create native apps for Android and iOS using React, a JavaScript user interface library.
+This project is built using [React Native](https://reactnative.dev/), the wonderful technology that allows you to create native apps for Android and iOS using React, a JavaScript user interface library.
 
 ## Getting Started
 
@@ -19,7 +21,7 @@ This project is built using [React Native](https://reactnative.dev/), the wonder
 You will need:
 
 - `expo-cli` on your local machine (`brew install expo-cli` should work on MacOS)
-- a smartphone with the [Expo Go](https://expo.dev/client) app installed
+- [recommended] a smartphone with the [Expo Go](https://expo.dev/client) app installed
 
 ### Setup
 
