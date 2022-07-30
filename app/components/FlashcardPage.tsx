@@ -24,6 +24,10 @@ export default function FlashcardPage() {
 
     console.log('sound', sound)
 
+    await Audio.setAudioModeAsync({
+      playsInSilentModeIOS: true,
+    });
+
     setSound(sound);
 
     console.log('Playing Sound');
