@@ -21,7 +21,7 @@ export default function FlashcardPage() {
   async function playSound() {
     console.log('Loading Sound');
     const { sound } = await Audio.Sound.createAsync(
-      require('../assets/audio/fidel/01.1_ha.wav')
+      require(`../assets/audio/fidel/${currentLetter.file}`)
     );
     setSound(sound);
 
@@ -47,8 +47,8 @@ export default function FlashcardPage() {
 
     const timeoutDuration = showAnswer ? 0 : 1000
 
+    if (!showAnswer) playSound();
     setShowAnswer(true);
-    playSound();
 
     setTimeout(() => {
       setShowAnswer(false);
