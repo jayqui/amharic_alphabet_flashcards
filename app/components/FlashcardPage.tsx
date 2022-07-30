@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import {  StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { sample, sampleSize } from 'lodash';
+import { secondaryTextColor } from '../constants';
 
 import SuccessPage from '../components/SuccessPage';
 
 import fidel from '../data/fidel.json';
 
-export default function App() {
+export default function FlashcardPage() {
   const [showAnswer, setShowAnswer] = useState(false);
   const [queue, setQueue] = useState(generateFidelSample());
   const [currentLetter, setCurrentLetter] = useState(sample(queue));
@@ -90,8 +91,6 @@ export default function App() {
     </>
   );
 }
-
-const secondaryTextColor = '#999';
 
 const styles = StyleSheet.create({
   fontSize96: { fontSize: 96 },
