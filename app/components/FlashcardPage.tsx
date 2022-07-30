@@ -8,7 +8,11 @@ import SuccessPage from '../components/SuccessPage';
 
 import fidel from '../data/fidel.js';
 
-export default function FlashcardPage() {
+type FlashcardProps = {
+  flashcardBatchSize: number,
+}
+
+export default function FlashcardPage({ flashcardBatchSize }: FlashcardProps) {
   const [showAnswer, setShowAnswer] = useState(false);
   const [queue, setQueue] = useState(generateFidelSample());
   const [currentLetter, setCurrentLetter] = useState(sample(queue));
@@ -34,7 +38,7 @@ export default function FlashcardPage() {
 
 
   function generateFidelSample() {
-    return sampleSize(fidel, 3);
+    return sampleSize(fidel, flashcardBatchSize);
   }
 
   function handleXPress() {

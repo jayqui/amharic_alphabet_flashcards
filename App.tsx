@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Image, StyleSheet, View } from 'react-native';
 import { NativeRouter, Routes, Route, Link } from 'react-router-native';
@@ -6,6 +7,8 @@ import FlashcardPage from './app/components/FlashcardPage';
 import Settings from './app/components/Settings';
 
 export default function App() {
+  const [flashcardBatchSize, setFlashcardBatchSize] = useState(3);
+
   return (
     <NativeRouter>
       <StatusBar style="auto" />
@@ -21,8 +24,8 @@ export default function App() {
 
         <View style={styles.mainContentContainer}>
           <Routes>
-            <Route path='/' element={<FlashcardPage />} />
-            <Route path='/settings' element={<Settings />} />
+            <Route path='/' element={<FlashcardPage flashcardBatchSize={flashcardBatchSize} />} />
+            <Route path='/settings' element={<Settings flashcardBatchSize={flashcardBatchSize} setFlashcardBatchSize={setFlashcardBatchSize} />} />
           </Routes>
         </View>
       </View>

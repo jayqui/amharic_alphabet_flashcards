@@ -1,13 +1,15 @@
 import { Button, Text, View } from 'react-native';
 
+type SettingsProps = {
+  flashcardBatchSize: number,
+  setFlashcardBatchSize: Function,
+}
 
-export default function Settings() {
-
-  console.log('hello from Settings')
+export default function Settings({ flashcardBatchSize, setFlashcardBatchSize }: SettingsProps) {
 
   return (
     <>
-      <Text>this is the settings pageaasdf</Text>
+      <Text>Flashcard Batch Size: {flashcardBatchSize}</Text>
     </>
   )
 }
