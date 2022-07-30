@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {  StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { sample, sampleSize } from 'lodash';
 import { secondaryTextColor } from '../constants';
+import { Audio } from 'expo-av';
 
 import SuccessPage from '../components/SuccessPage';
 
@@ -11,10 +12,31 @@ export default function FlashcardPage() {
   const [showAnswer, setShowAnswer] = useState(false);
   const [queue, setQueue] = useState(generateFidelSample());
   const [currentLetter, setCurrentLetter] = useState(sample(queue));
+  const [sound, setSound] = useState();
 
   console.log('queue.length', queue.length)
   console.log('currentLetter?.character', currentLetter?.character)
   console.log('queue:', queue.map((x) => x.character));
+
+  async function playSound() {
+    console.log('Loading Sound');
+    const { sound } = await Audio.Sound.createAsync(
+      require('../assets/audio/fidel/01.1_ha.wav')
+    );
+    setSound(sound);
+
+    console.log('Playing Sound');
+    await sound.playAsync();
+  }
+
+  useEffect(() => {
+    return sound
+      ? () => {
+        console.log('Unloading Sound');
+        sound.unloadAsync(); }
+      : undefined;
+  }, [sound]);
+
 
   function generateFidelSample() {
     return sampleSize(fidel, 3);
@@ -26,6 +48,8 @@ export default function FlashcardPage() {
     const timeoutDuration = showAnswer ? 0 : 1000
 
     setShowAnswer(true);
+    playSound();
+
     setTimeout(() => {
       setShowAnswer(false);
       const nextLetter = queue.length === 1 ? sample(queue) : sample(queueWithoutCurrentLetter());
@@ -44,6 +68,7 @@ export default function FlashcardPage() {
   }
 
   function handleHelpPress() {
+    if (!showAnswer) playSound();
     setShowAnswer(!showAnswer);
   }
 
