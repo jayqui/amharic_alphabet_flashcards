@@ -6,7 +6,7 @@ import { Audio } from 'expo-av';
 
 import SuccessPage from '../components/SuccessPage';
 
-import fidel from '../data/fidel.json';
+import fidel from '../data/fidel.js';
 
 export default function FlashcardPage() {
   const [showAnswer, setShowAnswer] = useState(false);
@@ -20,9 +20,10 @@ export default function FlashcardPage() {
 
   async function playSound() {
     console.log('Loading Sound');
-    const { sound } = await Audio.Sound.createAsync(
-      require(`../assets/audio/fidel/${currentLetter.file}`)
-    );
+    const { sound } = await Audio.Sound.createAsync(currentLetter.file);
+
+    console.log('sound', sound)
+
     setSound(sound);
 
     console.log('Playing Sound');
