@@ -14,30 +14,20 @@ export default function FlashcardPage() {
   const [currentLetter, setCurrentLetter] = useState(sample(queue));
   const [sound, setSound] = useState();
 
-  console.log('queue.length', queue.length)
-  console.log('currentLetter?.character', currentLetter?.character)
-  console.log('queue:', queue.map((x) => x.character));
-
   async function playSound() {
-    console.log('Loading Sound');
     const { sound } = await Audio.Sound.createAsync(currentLetter.file);
-
-    console.log('sound', sound)
 
     await Audio.setAudioModeAsync({
       playsInSilentModeIOS: true,
     });
 
     setSound(sound);
-
-    console.log('Playing Sound');
     await sound.playAsync();
   }
 
   useEffect(() => {
     return sound
       ? () => {
-        console.log('Unloading Sound');
         sound.unloadAsync(); }
       : undefined;
   }, [sound]);
@@ -48,8 +38,6 @@ export default function FlashcardPage() {
   }
 
   function handleXPress() {
-    console.log(`❌ was pressed for ${currentLetter?.character}`, new Date())
-
     const timeoutDuration = showAnswer ? 0 : 1000
 
     if (!showAnswer) playSound();
@@ -63,8 +51,6 @@ export default function FlashcardPage() {
   }
 
   function handleCheckPress() {
-    console.log(`✅ was pressed for ${currentLetter?.character}`, new Date())
-
     const newQueue = queueWithoutCurrentLetter();
 
     setShowAnswer(false);
