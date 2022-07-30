@@ -42,6 +42,10 @@ export default function App() {
     setCurrentLetter(sample(newQueue));
   }
 
+  function handleHelpPress() {
+    setShowAnswer(!showAnswer);
+  }
+
   function handleRestartPress() {
     const newQueue = generateFidelSample();
     setQueue(newQueue);
@@ -76,7 +80,7 @@ export default function App() {
         </View>
 
         <View>
-          <TouchableOpacity style={styles.toggleAnswerOpacity} onPress={() => setShowAnswer(!showAnswer)}>
+          <TouchableOpacity style={styles.toggleAnswerOpacity} onPress={handleHelpPress}>
             <Text style={[styles.fontSize16, { color: secondaryTextColor }]}>
               {showAnswer ? 'Hide' : 'Show'} Answer
             </Text>
