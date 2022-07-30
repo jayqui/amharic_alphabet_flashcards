@@ -43,7 +43,7 @@ export default [
   { character: "ሮ", transliteration: "ro", filename: "06.7_ro.wav", file: require('../assets/audio/fidel/06.7_ro.wav') },
   { character: "ሰ", transliteration: "seh", filename: "07.1_seh.wav", file: require('../assets/audio/fidel/07.1_seh.wav') },
   { character: "ሱ", transliteration: "su", filename: "07.2_su.wav", file: require('../assets/audio/fidel/07.2_su.wav') },
-  { character: "ሲ", transliteration: "si", filename: "07.3_si.wav", file: require('../assets/audio/fidel/07.3_si.wav') },
+  { character: "ሲ", transliteration: "see", filename: "07.3_si.wav", file: require('../assets/audio/fidel/07.3_si.wav') },
   { character: "ሳ", transliteration: "sa", filename: "07.4_sa.wav", file: require('../assets/audio/fidel/07.4_sa.wav') },
   { character: "ሴ", transliteration: "sae", filename: "07.5_sae.wav", file: require('../assets/audio/fidel/07.5_sae.wav') },
   { character: "ስ", transliteration: "sih", filename: "07.6_sih.wav", file: require('../assets/audio/fidel/07.6_sih.wav') },

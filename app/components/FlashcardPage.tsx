@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import {  StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { sample, sampleSize } from 'lodash';
-import { secondaryTextColor } from '../constants';
+import * as globalStyles from '../styleConstants';
 import { Audio } from 'expo-av';
 
 import SuccessPage from '../components/SuccessPage';
@@ -83,26 +83,26 @@ export default function FlashcardPage({ flashcardBatchSize }: FlashcardProps) {
 
   return (
     <>
-      <Text style={[styles.fontSize96]}>{currentLetter?.character}</Text>
-      <Text style={[styles.fontSize48]}>
+      <Text style={[globalStyles.fontSize96]}>{currentLetter?.character}</Text>
+      <Text style={[globalStyles.fontSize48]}>
         {showAnswer ? currentLetter?.transliteration : "_"}
       </Text>
 
-      <Text style={[styles.fontSize16, { color: secondaryTextColor }]}>{queue.length} left</Text>
+      <Text style={[globalStyles.fontSize16, { color: globalStyles.secondaryTextColor }]}>{queue.length} left</Text>
       <View style={styles.allButtonsContainer}>
 
         <View style={styles.answerButtonsContainer}>
           <TouchableOpacity style={styles.xOpacity} onPress={handleXPress}>
-            <Text style={styles.fontSize24}>❌</Text>
+            <Text style={globalStyles.fontSize24}>❌</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.checkOpacity} onPress={handleCheckPress}>
-            <Text style={styles.fontSize24}>✅</Text>
+            <Text style={globalStyles.fontSize24}>✅</Text>
           </TouchableOpacity>
         </View>
 
         <View>
           <TouchableOpacity style={styles.toggleAnswerOpacity} onPress={handleHelpPress}>
-            <Text style={[styles.fontSize16, { color: secondaryTextColor }]}>
+            <Text style={[globalStyles.fontSize16, { color: globalStyles.secondaryTextColor }]}>
               {showAnswer ? 'Hide' : 'Show'} Answer
             </Text>
           </TouchableOpacity>
@@ -113,10 +113,6 @@ export default function FlashcardPage({ flashcardBatchSize }: FlashcardProps) {
 }
 
 const styles = StyleSheet.create({
-  fontSize96: { fontSize: 96 },
-  fontSize48: { fontSize: 48 },
-  fontSize24: { fontSize: 24 },
-  fontSize16: { fontSize: 16 },
   allButtonsContainer: {
     width: '80%',
   },
@@ -142,7 +138,7 @@ const styles = StyleSheet.create({
   },
   toggleAnswerOpacity: {
     borderWidth: 5,
-    borderColor: secondaryTextColor,
+    borderColor: globalStyles.secondaryTextColor,
     marginTop: 12,
     minHeight: 96,
     justifyContent: 'center',

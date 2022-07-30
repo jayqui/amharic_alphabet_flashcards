@@ -1,4 +1,5 @@
 import { Button, Text } from 'react-native';
+import * as globalStyles from '../styleConstants';
 
 type SuccessPageProps = {
   handleRestartPress: Function,
@@ -10,7 +11,7 @@ type SuccessPageProps = {
 export default function SuccessPage({ handleRestartPress, styles }: SuccessPageProps) {
   return (
     <>
-      <Text style={[styles.fontSize96]}>Yay!</Text>
+      <Text style={[globalStyles.fontSize96]}>Yay!</Text>
       <Button title="Restart" onPress={handleRestartPress}></Button>
     </>
   )
