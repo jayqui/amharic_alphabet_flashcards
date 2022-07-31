@@ -6,17 +6,19 @@ import * as globalStyles from '../styleConstants';
 type SettingsProps = {
   settings: {
     flashcardBatchSize: Number,
-    shouldSpeak: Boolean
+    shouldSpeak: Boolean,
+    showVisualHint: Boolean,
   }
   setters: {
     setFlashcardBatchSize: Function,
     setShouldSpeak: Function,
+    setShowVisualHint: Function,
   }
 }
 
 export default function Settings({
-  settings: { flashcardBatchSize, shouldSpeak },
-  setters: { setFlashcardBatchSize, setShouldSpeak }}: SettingsProps)
+  settings: { flashcardBatchSize, shouldSpeak, showVisualHint },
+  setters: { setFlashcardBatchSize, setShouldSpeak, setShowVisualHint }}: SettingsProps)
 {
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState([
@@ -58,9 +60,9 @@ export default function Settings({
           setItems={setItems}
         />
         <Text style={styles.optionLabelText}>Play Sounds</Text>
-        <Switch value={shouldSpeak} onValueChange={() => setShouldSpeak(!shouldSpeak) } />
+        <Switch value={shouldSpeak} onValueChange={() => setShouldSpeak(!shouldSpeak)} />
         <Text style={styles.optionLabelText}>Show Visual Hint</Text>
-        <Switch />
+        <Switch value={showVisualHint} onValueChange={() => setShowVisualHint(!showVisualHint)} />
       </View>
     </>
   )

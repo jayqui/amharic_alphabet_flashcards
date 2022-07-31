@@ -9,9 +9,10 @@ import Settings from './app/components/Settings';
 export default function App() {
   const [flashcardBatchSize, setFlashcardBatchSize] = useState(3);
   const [shouldSpeak, setShouldSpeak] = useState(true);
+  const [showVisualHint, setShowVisualHint] = useState(true);
 
-  const settings = { flashcardBatchSize, shouldSpeak };
-  const setters = { setFlashcardBatchSize, setShouldSpeak };
+  const settings = { flashcardBatchSize, shouldSpeak, showVisualHint };
+  const setters = { setFlashcardBatchSize, setShouldSpeak, setShowVisualHint };
 
   return (
     <NativeRouter>

@@ -160,7 +160,7 @@ export default [
   { character: "ዤ", transliteration: "zjae", filename: "21.5_zhae.wav", file: require('../assets/audio/fidel/21.5_zhae.wav') },
   { character: "ዥ", transliteration: "zjih", filename: "21.6_zhih.wav", file: require('../assets/audio/fidel/21.6_zhih.wav') },
   { character: "ዦ", transliteration: "zjo", filename: "21.7_zho.wav", file: require('../assets/audio/fidel/21.7_zho.wav') },
-  { character: "የ", transliteration: "ye", filename: "22.1_yeh.wav", file: require('../assets/audio/fidel/22.1_yeh.wav') },
+  { character: "የ", transliteration: "yeh", filename: "22.1_yeh.wav", file: require('../assets/audio/fidel/22.1_yeh.wav') },
   { character: "ዩ", transliteration: "yu", filename: "22.2_yu.wav", file: require('../assets/audio/fidel/22.2_yu.wav') },
   { character: "ዪ", transliteration: "yee", filename: "22.3_yee.wav", file: require('../assets/audio/fidel/22.3_yee.wav') },
   { character: "ያ", transliteration: "ya", filename: "22.4_ya.wav", file: require('../assets/audio/fidel/22.4_ya.wav') },

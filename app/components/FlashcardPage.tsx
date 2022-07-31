@@ -15,7 +15,7 @@ type FlashcardProps = {
   }
 }
 
-export default function FlashcardPage({ settings: { flashcardBatchSize, shouldSpeak }}: FlashcardProps) {
+export default function FlashcardPage({ settings: { flashcardBatchSize, shouldSpeak, showVisualHint }}: FlashcardProps) {
   const [showAnswer, setShowAnswer] = useState(false);
   const [queue, setQueue] = useState(generateFidelSample());
   const [currentLetter, setCurrentLetter] = useState(sample(queue));
@@ -50,7 +50,7 @@ export default function FlashcardPage({ settings: { flashcardBatchSize, shouldSp
     const timeoutDuration = showAnswer ? 0 : 1000
 
     if (!showAnswer) playSound();
-    setShowAnswer(true);
+    if (showVisualHint) setShowAnswer(true);
 
     setTimeout(() => {
       setShowAnswer(false);
@@ -69,7 +69,7 @@ export default function FlashcardPage({ settings: { flashcardBatchSize, shouldSp
 
   function handleHelpPress() {
     if (!showAnswer) playSound();
-    setShowAnswer(!showAnswer);
+    if (showVisualHint) setShowAnswer(!showAnswer);
   }
 
   function handleRestartPress() {
@@ -82,6 +82,14 @@ export default function FlashcardPage({ settings: { flashcardBatchSize, shouldSp
     return queue.filter((ele: { character: string; }) => (
       ele.character !== currentLetter?.character)
     );
+  }
+
+  function renderHelpButtonText() {
+    if (showVisualHint) {
+      return `${showAnswer ? 'Hide' : 'Show'} Answer`;
+    } else {
+      return 'Play Audio';
+    }
   }
 
   if (!queue.length) return <SuccessPage handleRestartPress={handleRestartPress} styles={styles}/>;
@@ -108,7 +116,7 @@ export default function FlashcardPage({ settings: { flashcardBatchSize, shouldSp
         <View>
           <TouchableOpacity style={styles.toggleAnswerOpacity} onPress={handleHelpPress}>
             <Text style={[globalStyles.fontSize16, { color: globalStyles.secondaryTextColor }]}>
-              {showAnswer ? 'Hide' : 'Show'} Answer
+              {renderHelpButtonText()}
             </Text>
           </TouchableOpacity>
         </View>
