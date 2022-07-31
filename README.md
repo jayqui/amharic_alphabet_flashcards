@@ -1,6 +1,6 @@
 # Amharic Letters Flashcards
 
-[Amharic](https://en.wikipedia.org/wiki/Amharic), the official language of Ethiopia, has a writing system whose 238 letters are derived from beautiful Ge'ez script.
+[Amharic](https://en.wikipedia.org/wiki/Amharic), the official language of Ethiopia, has a writing system with over 200 letters derived from beautiful Ge'ez script.
 
 This simple app aims to provide practice learning these letters. (As of July 2022, it is aimed at English speakers only.)
 
