@@ -1,14 +1,23 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Switch, Text, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import * as globalStyles from '../styleConstants';
 
 type SettingsProps = {
-  flashcardBatchSize: number,
-  setFlashcardBatchSize: Function,
+  settings: {
+    flashcardBatchSize: Number,
+    shouldSpeak: Boolean
+  }
+  setters: {
+    setFlashcardBatchSize: Function,
+    setShouldSpeak: Function,
+  }
 }
 
-export default function Settings({ flashcardBatchSize, setFlashcardBatchSize }: SettingsProps) {
+export default function Settings({
+  settings: { flashcardBatchSize, shouldSpeak },
+  setters: { setFlashcardBatchSize, setShouldSpeak }}: SettingsProps)
+{
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState([
     {label: '1', value: '1'},
@@ -48,6 +57,10 @@ export default function Settings({ flashcardBatchSize, setFlashcardBatchSize }: 
           setValue={pickValue}
           setItems={setItems}
         />
+        <Text style={styles.optionLabelText}>Play Sounds</Text>
+        <Switch value={shouldSpeak} onValueChange={() => setShouldSpeak(!shouldSpeak) } />
+        <Text style={styles.optionLabelText}>Show Visual Hint</Text>
+        <Switch />
       </View>
     </>
   )

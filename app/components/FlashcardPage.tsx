@@ -9,16 +9,21 @@ import SuccessPage from '../components/SuccessPage';
 import fidel from '../data/fidel.js';
 
 type FlashcardProps = {
-  flashcardBatchSize: number,
+  settings: {
+    flashcardBatchSize: Number,
+    shouldSpeak: Boolean,
+  }
 }
 
-export default function FlashcardPage({ flashcardBatchSize }: FlashcardProps) {
+export default function FlashcardPage({ settings: { flashcardBatchSize, shouldSpeak }}: FlashcardProps) {
   const [showAnswer, setShowAnswer] = useState(false);
   const [queue, setQueue] = useState(generateFidelSample());
   const [currentLetter, setCurrentLetter] = useState(sample(queue));
   const [sound, setSound] = useState();
 
   async function playSound() {
+    if (!shouldSpeak) { return }
+
     const { sound } = await Audio.Sound.createAsync(currentLetter.file);
 
     await Audio.setAudioModeAsync({

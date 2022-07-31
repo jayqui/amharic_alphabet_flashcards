@@ -8,6 +8,10 @@ import Settings from './app/components/Settings';
 
 export default function App() {
   const [flashcardBatchSize, setFlashcardBatchSize] = useState(3);
+  const [shouldSpeak, setShouldSpeak] = useState(true);
+
+  const settings = { flashcardBatchSize, shouldSpeak };
+  const setters = { setFlashcardBatchSize, setShouldSpeak };
 
   return (
     <NativeRouter>
@@ -24,8 +28,10 @@ export default function App() {
 
         <View style={styles.mainContentContainer}>
           <Routes>
-            <Route path='/' element={<FlashcardPage flashcardBatchSize={flashcardBatchSize} />} />
-            <Route path='/settings' element={<Settings flashcardBatchSize={flashcardBatchSize} setFlashcardBatchSize={setFlashcardBatchSize} />} />
+            <Route path='/' element={<FlashcardPage settings={settings} />} />
+            <Route path='/settings' element={
+              <Settings settings={settings} setters={setters} />}
+            />
           </Routes>
         </View>
       </View>

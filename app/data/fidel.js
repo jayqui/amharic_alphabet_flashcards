@@ -223,7 +223,7 @@ export default [
   { character: "ፄ", transliteration: "tsae", filename: "30.5_tsae.wav", file: require('../assets/audio/fidel/30.5_tsae.wav') },
   { character: "ፅ", transliteration: "tsih", filename: "30.6_tsih.wav", file: require('../assets/audio/fidel/30.6_tsih.wav') },
   { character: "ፆ", transliteration: "tso", filename: "30.7_tso.wav", file: require('../assets/audio/fidel/30.7_tso.wav') },
-  { character: "ፈ", transliteration: "fuh", filename: "31.1_feh.wav", file: require('../assets/audio/fidel/31.1_feh.wav') },
+  { character: "ፈ", transliteration: "feh", filename: "31.1_feh.wav", file: require('../assets/audio/fidel/31.1_feh.wav') },
   { character: "ፉ", transliteration: "fu", filename: "31.2_fu.wav", file: require('../assets/audio/fidel/31.2_fu.wav') },
   { character: "ፊ", transliteration: "fee", filename: "31.3_fee.wav", file: require('../assets/audio/fidel/31.3_fee.wav') },
   { character: "ፋ", transliteration: "fa", filename: "31.4_fa.wav", file: require('../assets/audio/fidel/31.4_fa.wav') },
