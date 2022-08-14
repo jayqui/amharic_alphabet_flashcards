@@ -10,8 +10,8 @@ import fidel from '../data/fidel.js';
 
 type FlashcardProps = {
   settings: {
-    flashcardBatchSize: Number,
-    shouldSpeak: Boolean,
+    flashcardBatchSize: number,
+    shouldSpeak: boolean,
   }
 }
 
@@ -23,22 +23,14 @@ export default function FlashcardPage({ settings: { flashcardBatchSize, shouldSp
 
   async function playSound() {
     if (!shouldSpeak) { return }
-
     const { sound } = await Audio.Sound.createAsync(currentLetter.file);
-
-    await Audio.setAudioModeAsync({
-      playsInSilentModeIOS: true,
-    });
-
+    await Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
     setSound(sound);
     await sound.playAsync();
   }
 
   useEffect(() => {
-    return sound
-      ? () => {
-        sound.unloadAsync(); }
-      : undefined;
+    return sound ? () => { sound.unloadAsync(); } : undefined;
   }, [sound]);
 
 

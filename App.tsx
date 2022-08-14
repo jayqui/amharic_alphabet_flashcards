@@ -1,19 +1,37 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Image, StyleSheet, View } from 'react-native';
 import { NativeRouter, Routes, Route, Link } from 'react-router-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import FlashcardPage from './app/components/FlashcardPage';
 import Settings from './app/components/Settings';
+import { SettingsProps, DEFAULT_SETTINGS } from './app/types/SettingsProps';
 
-export default function App() {
-  const [flashcardBatchSize, setFlashcardBatchSize] = useState(3);
-  const [shouldSpeak, setShouldSpeak] = useState(true);
-  const [showVisualHint, setShowVisualHint] = useState(true);
+export default function AppContainer() {
+  const [loading, setLoading] = useState(true);
+  const [settings, setSettings] = useState(DEFAULT_SETTINGS);
 
-  const settings = { flashcardBatchSize, shouldSpeak, showVisualHint };
-  const setters = { setFlashcardBatchSize, setShouldSpeak, setShowVisualHint };
+  useEffect(() => {
+    getSettings()
+  }, [])
 
+  async function getSettings() {
+    try {
+      const jsonValue = await AsyncStorage.getItem('settings');
+      const finalSettingsValue = jsonValue != null ? JSON.parse(jsonValue) : DEFAULT_SETTINGS;
+      setSettings(finalSettingsValue);
+      setLoading(false);
+    } catch (error) {
+      alert(`error retrieving saved settings: ${error}`)
+    }
+  }
+
+  if (loading) return <h1>Loading . . .</h1>
+  return <App settings={settings} setSettings={setSettings} />
+}
+
+function App({settings, setSettings }: SettingsProps) {
   return (
     <NativeRouter>
       <StatusBar style="auto" />
@@ -31,7 +49,7 @@ export default function App() {
           <Routes>
             <Route path='/' element={<FlashcardPage settings={settings} />} />
             <Route path='/settings' element={
-              <Settings settings={settings} setters={setters} />}
+              <Settings settings={settings} setSettings={setSettings} />}
             />
           </Routes>
         </View>
