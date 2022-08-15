@@ -11,11 +11,13 @@ import fidel from '../data/fidel.js';
 type FlashcardProps = {
   settings: {
     flashcardBatchSize: number,
+    keepMissed: boolean,
     shouldSpeak: boolean,
+    showVisualHint: boolean,
   }
 }
 
-export default function FlashcardPage({ settings: { flashcardBatchSize, shouldSpeak, showVisualHint }}: FlashcardProps) {
+export default function FlashcardPage({ settings: { flashcardBatchSize, keepMissed, shouldSpeak, showVisualHint }}: FlashcardProps) {
   const [showAnswer, setShowAnswer] = useState(false);
   const [queue, setQueue] = useState(generateFidelSample());
   const [currentLetter, setCurrentLetter] = useState(sample(queue));
@@ -46,12 +48,21 @@ export default function FlashcardPage({ settings: { flashcardBatchSize, shouldSp
 
     setTimeout(() => {
       setShowAnswer(false);
-      const nextLetter = queue.length === 1 ? sample(queue) : sample(queueWithoutCurrentLetter());
-      setCurrentLetter(nextLetter);
+      let nextLetter
+      if (keepMissed) {
+        nextLetter = queue.length === 1 ? sample(queue) : sample(queueWithoutCurrentLetter());
+        setCurrentLetter(nextLetter);
+      } else {
+        removeCurrentLetter();
+      }
     }, timeoutDuration)
   }
 
   function handleCheckPress() {
+    removeCurrentLetter();
+  }
+
+  function removeCurrentLetter() {
     const newQueue = queueWithoutCurrentLetter();
 
     setShowAnswer(false);
@@ -84,7 +95,7 @@ export default function FlashcardPage({ settings: { flashcardBatchSize, shouldSp
     }
   }
 
-  if (!queue.length) return <SuccessPage handleRestartPress={handleRestartPress} styles={styles}/>;
+  if (!queue.length) return <SuccessPage handleRestartPress={handleRestartPress} />;
 
   return (
     <>

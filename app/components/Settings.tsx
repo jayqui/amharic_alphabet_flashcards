@@ -6,6 +6,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SettingsProps } from '../types/SettingsProps';
 import { cloneDeep } from 'lodash';
 
+import fidel from '../data/fidel.js';
+
 const FLASHCARD_BATCH_SIZE_CHOICES = [
   {label: '1', value: '1'},
   {label: '2', value: '2'},
@@ -25,6 +27,7 @@ const FLASHCARD_BATCH_SIZE_CHOICES = [
   {label: '50', value: '50'},
   {label: '100', value: '100'},
   {label: '200', value: '200'},
+  {label: `${fidel.length}`, value: `${fidel.length}`},
 ]
 
 export default function Settings({ settings, setSettings }: SettingsProps) {
@@ -63,6 +66,8 @@ export default function Settings({ settings, setSettings }: SettingsProps) {
           setValue={(choice: Function) => adjustSetting('flashcardBatchSize', choice())}
           setItems={setFlashcardBatchSizeChoices}
         />
+        <Text style={styles.optionLabelText}>Keep Cards in Rotation Until Answered Correctly</Text>
+        <Switch value={settings.keepMissed} onValueChange={() => toggleBooleanSetting('keepMissed')} />
         <Text style={styles.optionLabelText}>Play Sounds</Text>
         <Switch value={settings.shouldSpeak} onValueChange={() => toggleBooleanSetting('shouldSpeak')} />
         <Text style={styles.optionLabelText}>Show Visual Hint</Text>

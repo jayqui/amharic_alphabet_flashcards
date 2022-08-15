@@ -1,6 +1,7 @@
 export type SettingsProps = {
   settings: {
-    flashcardBatchSize: Number,
+    flashcardBatchSize: number,
+    keepMissed: boolean,
     shouldSpeak: boolean,
     showVisualHint: boolean,
   }
@@ -9,6 +10,7 @@ export type SettingsProps = {
 
 export const DEFAULT_SETTINGS = {
   flashcardBatchSize: 3,
+  keepMissed: true,
   shouldSpeak: true,
   showVisualHint: true,
 }

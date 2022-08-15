@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Image, StyleSheet, View } from 'react-native';
 import { NativeRouter, Routes, Route, Link } from 'react-router-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { cloneDeep, merge } from 'lodash';
 
 import FlashcardPage from './app/components/FlashcardPage';
 import Settings from './app/components/Settings';
@@ -19,7 +20,9 @@ export default function AppContainer() {
   async function getSettings() {
     try {
       const jsonValue = await AsyncStorage.getItem('settings');
-      const finalSettingsValue = jsonValue != null ? JSON.parse(jsonValue) : DEFAULT_SETTINGS;
+      const settingsParsedJson = jsonValue != null ? JSON.parse(jsonValue) : {}
+      const finalSettingsValue = merge(cloneDeep(DEFAULT_SETTINGS), settingsParsedJson);
+
       setSettings(finalSettingsValue);
       setLoading(false);
     } catch (error) {
@@ -31,7 +34,7 @@ export default function AppContainer() {
   return <App settings={settings} setSettings={setSettings} />
 }
 
-function App({settings, setSettings }: SettingsProps) {
+function App({ settings, setSettings }: SettingsProps) {
   return (
     <NativeRouter>
       <StatusBar style="auto" />
