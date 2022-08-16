@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 96,
     width: '48.5%',
-    backgroundColor: '#f88',
+    backgroundColor: globalStyles.red10,
     borderRadius: 40,
   },
   checkOpacity: {
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 96,
     width: '48.5%',
-    backgroundColor: '#0f8',
+    backgroundColor: globalStyles.green10,
     borderRadius: 40,
   },
   toggleAnswerOpacity: {

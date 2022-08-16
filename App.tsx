@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Image, StyleSheet, View } from 'react-native';
 import { NativeRouter, Routes, Route, Link } from 'react-router-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { cloneDeep, merge } from 'lodash';
+import * as globalStyles from './app/styleConstants';
 
 import FlashcardPage from './app/components/FlashcardPage';
 import Settings from './app/components/Settings';
 import { SettingsProps, DEFAULT_SETTINGS } from './app/types/SettingsProps';
 
-export default function AppContainer() {
+export default function App() {
   const [loading, setLoading] = useState(true);
   const [settings, setSettings] = useState(DEFAULT_SETTINGS);
 
@@ -30,34 +31,53 @@ export default function AppContainer() {
     }
   }
 
-  if (loading) return <h1>Loading . . .</h1>
-  return <App settings={settings} setSettings={setSettings} />
-}
+  function renderActivityIndicator() {
+    return(
+      <ActivityIndicator
+        color={globalStyles.green30}
+        size={'large'}
+        style={styles.mainContentContainer} />
+    )
+  }
 
-function App({ settings, setSettings }: SettingsProps) {
+  function renderMainContent() {
+    return <MainContent settings={settings} setSettings={setSettings} />
+  }
+
   return (
     <NativeRouter>
       <StatusBar style="auto" />
       <View style={styles.outermostContainer}>
-        <View style={styles.nav}>
-          <Link to='/' underlayColor='#eee' style={styles.navItem}>
-            <Image style={styles.navImage} source={require('./app/assets/images/icons/hamburger.png')} />
-          </Link>
-          <Link to='/settings' underlayColor='#eee' style={styles.navItem}>
-            <Image style={styles.navImage} source={require('./app/assets/images/icons/settings.png')} />
-          </Link>
-        </View>
-
-        <View style={styles.mainContentContainer}>
-          <Routes>
-            <Route path='/' element={<FlashcardPage settings={settings} />} />
-            <Route path='/settings' element={
-              <Settings settings={settings} setSettings={setSettings} />}
-            />
-          </Routes>
-        </View>
+        <NavBar />
+        {loading ? renderActivityIndicator() : renderMainContent()}
       </View>
     </NativeRouter>
+  )
+}
+
+function NavBar() {
+  return(
+    <View style={styles.nav}>
+      <Link to='/' underlayColor='#eee' style={styles.navItem}>
+        <Image style={styles.navImage} source={require('./app/assets/images/icons/hamburger.png')} />
+      </Link>
+      <Link to='/settings' underlayColor='#eee' style={styles.navItem}>
+        <Image style={styles.navImage} source={require('./app/assets/images/icons/settings.png')} />
+      </Link>
+    </View>
+  )
+}
+
+function MainContent({ settings, setSettings }: SettingsProps) {
+  return(
+    <View style={styles.mainContentContainer}>
+      <Routes>
+        <Route path='/' element={<FlashcardPage settings={settings} />} />
+        <Route path='/settings' element={
+          <Settings settings={settings} setSettings={setSettings} />}
+        />
+      </Routes>
+    </View>
   )
 }
 
@@ -70,7 +90,7 @@ const styles = StyleSheet.create({
   },
   nav: {
     flexDirection: 'row',
-    backgroundColor: '#0f8',
+    backgroundColor: globalStyles.green30,
     justifyContent: 'space-between',
     height: '11%',
     width: '100%',

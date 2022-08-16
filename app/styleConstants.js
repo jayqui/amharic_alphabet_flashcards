@@ -1,3 +1,16 @@
+// Palette URL: http://paletton.com/#uid=2000u0kiCFn8GVde7NVmtwSqXtg
+export const red0 = '#FFBABA';
+export const red10 = '#FF8F8F';
+export const red20 = '#FF6B6B';
+export const red30 = '#FF4C4C';
+export const red40 = '#E92525';
+
+export const green0 = '#B3F6B3';
+export const green10 = '#83EA83';
+export const green20 = '#5CDD5C';
+export const green30 = '#3DCD3D';
+export const green40 = '#1DBB1D';
+
 export const secondaryTextColor = '#999';
 
 export const fontSize96 = { fontSize: 96 };
