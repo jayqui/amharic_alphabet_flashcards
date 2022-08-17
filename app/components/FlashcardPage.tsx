@@ -24,7 +24,7 @@ export default function FlashcardPage({ settings: { flashcardBatchSize, keepMiss
   const [sound, setSound] = useState();
 
   async function playSound() {
-    if (!shouldSpeak) { return }
+    if (!shouldSpeak) { return; }
     const { sound } = await Audio.Sound.createAsync(currentLetter.file);
     await Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
     setSound(sound);
@@ -41,21 +41,21 @@ export default function FlashcardPage({ settings: { flashcardBatchSize, keepMiss
   }
 
   function handleXPress() {
-    const timeoutDuration = showAnswer ? 0 : 1000
+    const timeoutDuration = showAnswer ? 0 : 1000;
 
     if (!showAnswer) playSound();
     if (showVisualHint) setShowAnswer(true);
 
     setTimeout(() => {
       setShowAnswer(false);
-      let nextLetter
+      let nextLetter;
       if (keepMissed) {
         nextLetter = queue.length === 1 ? sample(queue) : sample(queueWithoutCurrentLetter());
         setCurrentLetter(nextLetter);
       } else {
         removeCurrentLetter();
       }
-    }, timeoutDuration)
+    }, timeoutDuration);
   }
 
   function handleCheckPress() {
@@ -101,7 +101,7 @@ export default function FlashcardPage({ settings: { flashcardBatchSize, keepMiss
     <>
       <Text style={[globalStyles.fontSize96]}>{currentLetter?.character}</Text>
       <Text style={[globalStyles.fontSize48]}>
-        {showAnswer ? currentLetter?.transliteration : "_"}
+        {showAnswer ? currentLetter?.transliteration : '_'}
       </Text>
 
       <Text style={[globalStyles.fontSize16, { color: globalStyles.secondaryTextColor }]}>{queue.length} left</Text>

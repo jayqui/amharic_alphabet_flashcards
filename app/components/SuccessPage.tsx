@@ -11,5 +11,5 @@ export default function SuccessPage({ handleRestartPress }: SuccessPageProps) {
       <Text style={[globalStyles.fontSize96]}>Yay!</Text>
       <Button title="Restart" onPress={handleRestartPress}></Button>
     </>
-  )
+  );
 }

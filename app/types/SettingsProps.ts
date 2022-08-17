@@ -13,4 +13,4 @@ export const DEFAULT_SETTINGS = {
   keepMissed: true,
   shouldSpeak: true,
   showVisualHint: true,
-}
+};

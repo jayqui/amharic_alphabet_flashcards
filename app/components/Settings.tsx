@@ -28,7 +28,7 @@ const FLASHCARD_BATCH_SIZE_CHOICES = [
   {label: '100', value: '100'},
   {label: '200', value: '200'},
   {label: `${fidel.length}`, value: `${fidel.length}`},
-]
+];
 
 export default function Settings({ settings, setSettings }: SettingsProps) {
   const [open, setOpen] = useState(false);
@@ -36,21 +36,21 @@ export default function Settings({ settings, setSettings }: SettingsProps) {
 
   async function storeData(key: string, value: string) {
     try {
-      await AsyncStorage.setItem(key, value)
+      await AsyncStorage.setItem(key, value);
     } catch (error) {
-      alert(`error saving settings: ${error}`)
+      alert(`error saving settings: ${error}`);
     }
   }
 
   function adjustSetting(settingsKey: string, newValue: any) {
-    const newSettings = cloneDeep(settings)
+    const newSettings = cloneDeep(settings);
     newSettings[settingsKey] = newValue;
     storeData('settings', JSON.stringify(newSettings));
     setSettings(newSettings);
   }
 
   function toggleBooleanSetting(settingsKey: string) {
-    adjustSetting(settingsKey, !settings[settingsKey])
+    adjustSetting(settingsKey, !settings[settingsKey]);
   }
 
   return (
@@ -74,7 +74,7 @@ export default function Settings({ settings, setSettings }: SettingsProps) {
         <Switch value={settings.showVisualHint} onValueChange={() => toggleBooleanSetting('showVisualHint')} />
       </View>
     </>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -89,9 +89,9 @@ const styles = StyleSheet.create({
     marginTop: 24,
   },
   dropDownPicker: {
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     padding: 8, // for web
-    flexDirection: "row",
+    flexDirection: 'row',
     borderRadius: 5,
   }
 });
