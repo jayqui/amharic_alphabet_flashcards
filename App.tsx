@@ -15,19 +15,19 @@ export default function App() {
   const [settings, setSettings] = useState(DEFAULT_SETTINGS);
 
   useEffect(() => {
-    getSettings()
-  }, [])
+    getSettings();
+  }, []);
 
   async function getSettings() {
     try {
       const jsonValue = await AsyncStorage.getItem('settings');
-      const settingsParsedJson = jsonValue != null ? JSON.parse(jsonValue) : {}
+      const settingsParsedJson = jsonValue != null ? JSON.parse(jsonValue) : {};
       const finalSettingsValue = merge(cloneDeep(DEFAULT_SETTINGS), settingsParsedJson);
 
       setSettings(finalSettingsValue);
       setLoading(false);
     } catch (error) {
-      alert(`error retrieving saved settings: ${error}`)
+      alert(`error retrieving saved settings: ${error}`);
     }
   }
 
@@ -37,11 +37,11 @@ export default function App() {
         color={globalStyles.green30}
         size={'large'}
         style={styles.mainContentContainer} />
-    )
+    );
   }
 
   function renderMainContent() {
-    return <MainContent settings={settings} setSettings={setSettings} />
+    return <MainContent settings={settings} setSettings={setSettings} />;
   }
 
   return (
@@ -52,7 +52,7 @@ export default function App() {
         {loading ? renderActivityIndicator() : renderMainContent()}
       </View>
     </NativeRouter>
-  )
+  );
 }
 
 function NavBar() {
@@ -65,7 +65,7 @@ function NavBar() {
         <Image style={styles.navImage} source={require('./app/assets/images/icons/settings.png')} />
       </Link>
     </View>
-  )
+  );
 }
 
 function MainContent({ settings, setSettings }: SettingsProps) {
@@ -78,7 +78,7 @@ function MainContent({ settings, setSettings }: SettingsProps) {
         />
       </Routes>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
