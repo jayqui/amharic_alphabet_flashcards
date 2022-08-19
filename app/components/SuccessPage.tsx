@@ -1,5 +1,5 @@
 import { Button, Text } from 'react-native';
-import * as globalStyles from '../styleConstants';
+import * as globalStyles from '../globalStyles';
 
 type SuccessPageProps = {
   handleRestartPress(): void,

@@ -1,3 +1,14 @@
+// BUTTONS //
+export const standardButton = {
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: 96,
+  width: '48.5%',
+  borderRadius: 40,
+};
+
+// COLORS //
+
 // Palette URL: http://paletton.com/#uid=2000u0kiCFn8GVde7NVmtwSqXtg
 export const red0 = '#FFBABA';
 export const red10 = '#FF8F8F';
@@ -13,6 +24,7 @@ export const green40 = '#1DBB1D';
 
 export const secondaryTextColor = '#999';
 
+// FONT SIZE //
 export const fontSize96 = { fontSize: 96 };
 export const fontSize48 = { fontSize: 48 };
 export const fontSize24 = { fontSize: 24 };

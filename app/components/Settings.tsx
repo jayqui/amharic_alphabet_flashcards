@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, Switch, Text, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-import * as globalStyles from '../styleConstants';
+import * as globalStyles from '../globalStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SettingsProps } from '../types/SettingsProps';
 import { cloneDeep } from 'lodash';

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import {  StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { sample, sampleSize } from 'lodash';
-import * as globalStyles from '../styleConstants';
+import * as globalStyles from '../globalStyles';
 import { Audio } from 'expo-av';
 
 import SuccessPage from '../components/SuccessPage';
@@ -137,20 +137,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   xOpacity: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 96,
-    width: '48.5%',
+    ...globalStyles.standardButton,
     backgroundColor: globalStyles.red10,
-    borderRadius: 40,
   },
   checkOpacity: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 96,
-    width: '48.5%',
+    ...globalStyles.standardButton,
     backgroundColor: globalStyles.green10,
-    borderRadius: 40,
   },
   toggleAnswerOpacity: {
     borderWidth: 5,
