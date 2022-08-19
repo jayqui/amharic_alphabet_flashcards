@@ -7,6 +7,7 @@ import { cloneDeep, merge } from 'lodash';
 import * as globalStyles from './app/globalStyles';
 
 import MainMenu from './app/components/MainMenu';
+import FidelList from './app/components/FidelList';
 import FlashcardPage from './app/components/FlashcardPage';
 import Settings from './app/components/Settings';
 import { SettingsProps, DEFAULT_SETTINGS } from './app/types/SettingsProps';
@@ -75,6 +76,7 @@ function MainContent({ settings, setSettings }: SettingsProps) {
       <Routes>
         <Route path='/' element={<MainMenu />} />
         <Route path='/flashcards' element={<FlashcardPage settings={settings} />} />
+        <Route path='/fidel-list' element={<FidelList />} />
         <Route path='/settings' element={
           <Settings settings={settings} setSettings={setSettings} />}
         />

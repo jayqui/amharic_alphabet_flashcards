@@ -8,6 +8,9 @@ export default function MainMenu() {
       <Link to='/flashcards' underlayColor={globalStyles.green40} style={styles.flashcardButton}>
         <Text style={globalStyles.fontSize20}>Flashcards</Text>
       </Link>
+      <Link to='/fidel-list' underlayColor={globalStyles.green40} style={styles.flashcardButton}>
+        <Text style={globalStyles.fontSize20}>Fidel List</Text>
+      </Link>
     </>
   );
 }
