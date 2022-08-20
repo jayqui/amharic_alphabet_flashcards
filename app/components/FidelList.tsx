@@ -25,11 +25,16 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   dataCell: {
-    backgroundColor: globalStyles.green0,
     borderColor: globalStyles.charcoal110,
     borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  dataCellGray: {
+    backgroundColor: globalStyles.charcoal110,
+  },
+  dataCellGreen: {
+    backgroundColor: globalStyles.green0,
   },
   dataCellText: {
     ...globalStyles.fontSize28,
@@ -64,7 +69,7 @@ export default function FidelList() {
   return(
     <DataTable style={styles.dataTable}>
       <ScrollView>
-        {Object.keys(consonantGroups).map((consonant: string) => {
+        {Object.keys(consonantGroups).map((consonant: string, rowIndex: number) => {
           const consonantGroup = consonantGroups[consonant];
 
           return(
@@ -72,7 +77,7 @@ export default function FidelList() {
               {consonantGroup.map((fidel: Fidel) => (
                 <DataTable.Cell
                   key={fidel.character}
-                  style={styles.dataCell}
+                  style={[styles.dataCell, rowIndex % 2 === 0 ? styles.dataCellGray : styles.dataCellGreen]}
                   textStyle={styles.dataCellText}
                   onPress={() => playSound(fidel)}
                 >
