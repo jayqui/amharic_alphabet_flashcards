@@ -1,10 +1,13 @@
 // BUTTONS //
-export const standardButton = {
+const buttonBase = {
   justifyContent: 'center',
   alignItems: 'center',
+  borderRadius: 40,
+};
+export const standardButton = {
+  ...buttonBase,
   height: 96,
   width: '48.5%',
-  borderRadius: 40,
 };
 
 // COLORS //
