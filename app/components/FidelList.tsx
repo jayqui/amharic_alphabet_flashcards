@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { ScrollView, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import { DataTable } from 'react-native-paper';
-
 import * as globalStyles from '../globalStyles.js';
 import fidels from '../data/fidel.js';
 
@@ -21,11 +20,18 @@ const STANDARD_LETTERS = ['ə', 'u', 'i', 'a', 'ē', 'ih', 'o'];
 
 const styles = StyleSheet.create({
   fidelButton: {
-    justifyContent: 'center',
+    color: globalStyles.charcoal20,
+  },
+  dataCell: {
+    backgroundColor: globalStyles.green0,
+    borderColor: globalStyles.charcoal100,
+    borderWidth: 1,
     alignItems: 'center',
-    borderRadius: 40,
-    backgroundColor: globalStyles.green20,
-  }
+    justifyContent: 'center',
+  },
+  dataCellText: {
+    ...globalStyles.fontSize20,
+  },
 });
 
 export default function FidelList() {
@@ -50,10 +56,13 @@ export default function FidelList() {
           return(
             <DataTable.Row key={consonant}>
               {consonantGroup.map((fidel: Fidel) => (
-                <DataTable.Cell key={fidel.character}>
-                  <TouchableOpacity style={styles.fidelButton}>
-                    <Text>{fidel.character}</Text>
-                  </TouchableOpacity>
+                <DataTable.Cell
+                  key={fidel.character}
+                  style={styles.dataCell}
+                  textStyle={styles.dataCellText}
+                  onPress={() => { console.log(fidel.character); }}
+                >
+                  {fidel.character}
                 </DataTable.Cell>
               ))}
             </DataTable.Row>

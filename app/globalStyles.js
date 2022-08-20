@@ -12,6 +12,8 @@ export const standardButton = {
 
 // COLORS //
 
+export const secondaryTextColor = '#999';
+
 // Palette URL: http://paletton.com/#uid=2000u0kiCFn8GVde7NVmtwSqXtg
 export const red0 = '#FFBABA';
 export const red10 = '#FF8F8F';
@@ -25,7 +27,19 @@ export const green20 = '#5CDD5C';
 export const green30 = '#3DCD3D';
 export const green40 = '#1DBB1D';
 
-export const secondaryTextColor = '#999';
+export const charcoal0 = '#040404';
+export const charcoal10 = '#181818';
+export const charcoal20 = '#2c2c2c';
+export const charcoal30 = '#3f3f3f';
+export const charcoal40 = '#535353';
+export const charcoal50 = '#666666';
+export const charcoal60 = '#7a7a7a';
+export const charcoal70 = '#8e8e8e';
+export const charcoal80 = '#a1a1a1';
+export const charcoal90 = '#b5b5b5';
+export const charcoal100 = '#c9c9c9';
+export const charcoal110 = '#dcdcdc';
+export const charcoal120 = '#fafafa';
 
 // FONT SIZE //
 export const fontSize96 = { fontSize: 96 };
