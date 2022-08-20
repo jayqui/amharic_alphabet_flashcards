@@ -4,8 +4,9 @@ import { ActivityIndicator, Image, StyleSheet, View } from 'react-native';
 import { NativeRouter, Routes, Route, Link } from 'react-router-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { cloneDeep, merge } from 'lodash';
-import * as globalStyles from './app/globalStyles';
 import { MD3LightTheme as DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+
+import * as globalStyles from './app/globalStyles';
 
 import MainMenu from './app/components/MainMenu';
 import FidelList from './app/components/FidelList';

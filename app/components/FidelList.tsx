@@ -4,6 +4,7 @@ import { DataTable } from 'react-native-paper';
 import * as globalStyles from '../globalStyles.js';
 import fidels from '../data/fidel.js';
 import { Audio } from 'expo-av';
+import { forceOrientationLandscape, forceOrientationPortraitUp, unlockForcedOrientation } from '../utils/forceOrientation';
 
 type Fidel = {
   character: string,
@@ -51,6 +52,15 @@ export default function FidelList() {
     setSound(sound);
     await sound.playAsync();
   }
+
+  useEffect(() => {
+    forceOrientationLandscape();
+
+    return function cleanup() {
+      forceOrientationPortraitUp();
+      unlockForcedOrientation();
+    };
+  }, []);
 
   useEffect(() => {
     return sound ? () => { sound.unloadAsync(); } : undefined;
