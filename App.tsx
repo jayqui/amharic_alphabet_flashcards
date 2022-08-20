@@ -22,7 +22,7 @@ const theme = {
   },
 };
 
-export default function Thing() {
+export default function AppContainer() {
   return(
     <PaperProvider theme={theme}>
       <App />

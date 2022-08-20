@@ -42,8 +42,9 @@ export const charcoal110 = '#dcdcdc';
 export const charcoal120 = '#fafafa';
 
 // FONT SIZE //
-export const fontSize96 = { fontSize: 96 };
-export const fontSize48 = { fontSize: 48 };
-export const fontSize24 = { fontSize: 24 };
-export const fontSize20 = { fontSize: 20 };
 export const fontSize16 = { fontSize: 16 };
+export const fontSize20 = { fontSize: 20 };
+export const fontSize24 = { fontSize: 24 };
+export const fontSize28 = { fontSize: 28 };
+export const fontSize48 = { fontSize: 48 };
+export const fontSize96 = { fontSize: 96 };

@@ -35,7 +35,6 @@ export default function FlashcardPage({ settings: { flashcardBatchSize, keepMiss
     return sound ? () => { sound.unloadAsync(); } : undefined;
   }, [sound]);
 
-
   function generateFidelSample() {
     return sampleSize(fidel, flashcardBatchSize);
   }
