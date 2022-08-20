@@ -5,6 +5,7 @@ import { NativeRouter, Routes, Route, Link } from 'react-router-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { cloneDeep, merge } from 'lodash';
 import * as globalStyles from './app/globalStyles';
+import { MD3LightTheme as DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 
 import MainMenu from './app/components/MainMenu';
 import FidelList from './app/components/FidelList';
@@ -12,7 +13,24 @@ import FlashcardPage from './app/components/FlashcardPage';
 import Settings from './app/components/Settings';
 import { SettingsProps, DEFAULT_SETTINGS } from './app/types/SettingsProps';
 
-export default function App() {
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: globalStyles.green40,
+    secondary: globalStyles.red40,
+  },
+};
+
+export default function Thing() {
+  return(
+    <PaperProvider theme={theme}>
+      <App />
+    </PaperProvider>
+  );
+}
+
+function App() {
   const [loading, setLoading] = useState(true);
   const [settings, setSettings] = useState(DEFAULT_SETTINGS);
 
