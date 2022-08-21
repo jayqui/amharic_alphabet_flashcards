@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { DataTable } from 'react-native-paper';
 import * as globalStyles from '../globalStyles.js';
-import fidels from '../data/fidel.js';
+import fidels from '../data/fidelsArray.ts';
 import { Audio } from 'expo-av';
 import { forceOrientationLandscape, forceOrientationPortraitUp, unlockForcedOrientation } from '../utils/forceOrientation';
 

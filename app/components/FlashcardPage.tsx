@@ -6,7 +6,7 @@ import { Audio } from 'expo-av';
 
 import SuccessPage from '../components/SuccessPage';
 
-import fidel from '../data/fidel.js';
+import fidel from '../data/fidelsArray.ts';
 
 type FlashcardProps = {
   settings: {

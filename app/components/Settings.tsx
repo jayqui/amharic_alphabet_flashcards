@@ -6,7 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SettingsProps } from '../types/SettingsProps';
 import { cloneDeep } from 'lodash';
 
-import fidel from '../data/fidel.js';
+import fidel from '../data/fidelsArray.ts';
 
 const FLASHCARD_BATCH_SIZE_CHOICES = [
   {label: '1', value: '1'},
