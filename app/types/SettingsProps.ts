@@ -1,14 +1,16 @@
 export type SettingsProps = {
-  settings: {
-    flashcardBatchSize: number,
-    keepMissed: boolean,
-    shouldSpeak: boolean,
-    showVisualHint: boolean,
-
-    diphthongFreeFidelList: boolean,
-  }
-  setSettings: Function,
+  settings: SettingsType,
+  setSettings: (settings: SettingsType) => void,
 };
+
+export type SettingsType = {
+  flashcardBatchSize: number,
+  keepMissed: boolean,
+  shouldSpeak: boolean,
+  showVisualHint: boolean,
+
+  diphthongFreeFidelList: boolean,
+}
 
 export const DEFAULT_SETTINGS = {
   flashcardBatchSize: 3,

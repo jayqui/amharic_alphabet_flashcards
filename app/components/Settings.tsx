@@ -3,10 +3,10 @@ import { StyleSheet, Switch, Text, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import * as globalStyles from '../globalStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { SettingsProps } from '../types/SettingsProps';
+import { SettingsProps, SettingsType } from '../types/SettingsProps';
 import { cloneDeep } from 'lodash';
 
-import fidel from '../data/fidelsArray.ts';
+import fidel from '../data/fidelsArray';
 
 const FLASHCARD_BATCH_SIZE_CHOICES = [
   {label: '1', value: '1'},
@@ -43,7 +43,7 @@ export default function Settings({ settings, setSettings }: SettingsProps) {
   }
 
   function adjustSetting(settingsKey: string, newValue: any) {
-    const newSettings = cloneDeep(settings);
+    const newSettings: SettingsType = cloneDeep(settings);
     newSettings[settingsKey] = newValue;
     storeData('settings', JSON.stringify(newSettings));
     setSettings(newSettings);
@@ -76,7 +76,7 @@ export default function Settings({ settings, setSettings }: SettingsProps) {
 
         <Text style={styles.optionLabelText}>Fidel</Text>
         <Text style={styles.optionLabelText}>Show Diphthongs</Text>
-        <Switch value={settings.diphthongFreeFidelList} onValueChange={() => toggleBooleanSetting('diphthongFreeFidelList')} />
+        <Switch value={!settings.diphthongFreeFidelList} onValueChange={() => toggleBooleanSetting('diphthongFreeFidelList')} />
       </View>
     </>
   );

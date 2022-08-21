@@ -9,7 +9,7 @@ import { MD3LightTheme as DefaultTheme, Provider as PaperProvider } from 'react-
 import * as globalStyles from './app/globalStyles';
 
 import MainMenu from './app/components/MainMenu';
-import FidelList from './app/components/FidelList';
+import FidelsList from './app/components/FidelsList';
 import FlashcardPage from './app/components/FlashcardPage';
 import Settings from './app/components/Settings';
 import { SettingsProps, DEFAULT_SETTINGS } from './app/types/SettingsProps';
@@ -30,6 +30,39 @@ export default function AppContainer() {
     </PaperProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  outermostContainer: {
+    flex: 1,
+    backgroundColor: '#eee',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+  nav: {
+    flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+    backgroundColor: globalStyles.green30,
+    height: '11%',
+    width: '100%',
+    paddingHorizontal: 20,
+  },
+  navItem: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 10,
+  },
+  mainContentContainer: {
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    height: '89%',
+    width: '100%',
+  },
+  navImage: {
+    width: 24,
+    height: 24,
+  },
+});
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -57,7 +90,8 @@ function App() {
       <ActivityIndicator
         color={globalStyles.green30}
         size={'large'}
-        style={styles.mainContentContainer} />
+        style={styles.mainContentContainer}
+      />
     );
   }
 
@@ -67,7 +101,7 @@ function App() {
 
   return (
     <NativeRouter>
-      <StatusBar style="auto" />
+      <StatusBar style='auto' />
       <View style={styles.outermostContainer}>
         <NavBar />
         {loading ? renderActivityIndicator() : renderMainContent()}
@@ -95,7 +129,7 @@ function MainContent({ settings, setSettings }: SettingsProps) {
       <Routes>
         <Route path='/' element={<MainMenu />} />
         <Route path='/flashcards' element={<FlashcardPage settings={settings} />} />
-        <Route path='/fidel-list' element={<FidelList settings={settings} />} />
+        <Route path='/fidel-list' element={<FidelsList settings={settings} />} />
         <Route path='/settings' element={
           <Settings settings={settings} setSettings={setSettings} />}
         />
@@ -103,37 +137,3 @@ function MainContent({ settings, setSettings }: SettingsProps) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  outermostContainer: {
-    flex: 1,
-    backgroundColor: '#eee',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-  nav: {
-    flexDirection: 'row',
-    backgroundColor: globalStyles.green30,
-    justifyContent: 'space-between',
-    height: '11%',
-    width: '100%',
-    paddingTop: 44,
-    paddingBottom: 10,
-    paddingHorizontal: 20,
-  },
-  navItem: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 10,
-  },
-  mainContentContainer: {
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
-    height: '89%',
-    width: '100%',
-  },
-  navImage: {
-    width: 24,
-    height: 24,
-  },
-});
