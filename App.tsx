@@ -95,7 +95,7 @@ function MainContent({ settings, setSettings }: SettingsProps) {
       <Routes>
         <Route path='/' element={<MainMenu />} />
         <Route path='/flashcards' element={<FlashcardPage settings={settings} />} />
-        <Route path='/fidel-list' element={<FidelList />} />
+        <Route path='/fidel-list' element={<FidelList settings={settings} />} />
         <Route path='/settings' element={
           <Settings settings={settings} setSettings={setSettings} />}
         />

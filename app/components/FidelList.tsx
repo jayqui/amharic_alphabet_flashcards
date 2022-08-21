@@ -42,8 +42,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function FidelList() {
-  const [diphthongFree, setDiphthongFree] = useState(true);
+export default function FidelList({ settings: { diphthongFreeFidelList }}: FidelListProps) {
   const [sound, setSound] = useState();
 
   async function playSound(fidel: Fidel) {

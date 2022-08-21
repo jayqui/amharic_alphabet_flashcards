@@ -4,6 +4,8 @@ export type SettingsProps = {
     keepMissed: boolean,
     shouldSpeak: boolean,
     showVisualHint: boolean,
+
+    diphthongFreeFidelList: boolean,
   }
   setSettings: Function,
 };
@@ -13,4 +15,5 @@ export const DEFAULT_SETTINGS = {
   keepMissed: true,
   shouldSpeak: true,
   showVisualHint: true,
+  diphthongFreeFidelList: false,
 };

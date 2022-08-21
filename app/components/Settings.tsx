@@ -56,6 +56,7 @@ export default function Settings({ settings, setSettings }: SettingsProps) {
   return (
     <>
       <View style={styles.batchSizePicker}>
+        <Text style={styles.optionLabelText}>Flashcards</Text>
         <Text style={styles.optionLabelText}>Flashcard Batch Size</Text>
         <DropDownPicker
           style={styles.dropDownPicker}
@@ -72,6 +73,10 @@ export default function Settings({ settings, setSettings }: SettingsProps) {
         <Switch value={settings.shouldSpeak} onValueChange={() => toggleBooleanSetting('shouldSpeak')} />
         <Text style={styles.optionLabelText}>Show Visual Hint</Text>
         <Switch value={settings.showVisualHint} onValueChange={() => toggleBooleanSetting('showVisualHint')} />
+
+        <Text style={styles.optionLabelText}>Fidel</Text>
+        <Text style={styles.optionLabelText}>Show Diphthongs</Text>
+        <Switch value={settings.diphthongFreeFidelList} onValueChange={() => toggleBooleanSetting('diphthongFreeFidelList')} />
       </View>
     </>
   );
