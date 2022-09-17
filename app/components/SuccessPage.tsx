@@ -13,8 +13,11 @@ export default function SuccessPage({ handleRestartPress }: SuccessPageProps) {
       <Text style={[globalStyles.fontSize96]}>Yay!</Text>
       <Button
         mode='contained'
-        theme={{ roundness: 5 }}
-        onPress={handleRestartPress}>
+        onPress={handleRestartPress}
+        style={globalStyles.standardButton}
+        contentStyle={globalStyles.standardButtonContent}
+        labelStyle={globalStyles.standardButtonLabel}
+      >
           Restart
       </Button>
     </>

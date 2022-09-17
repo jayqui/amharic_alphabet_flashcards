@@ -20,6 +20,7 @@ const theme = {
     ...DefaultTheme.colors,
     primary: globalStyles.green40,
     secondary: globalStyles.red40,
+    secondaryContainer: globalStyles.yellow0,
   },
 };
 

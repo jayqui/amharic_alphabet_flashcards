@@ -17,13 +17,13 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   dataCell: {
-    borderColor: globalStyles.charcoal110,
+    borderColor: globalStyles.charcoal10,
     borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
   dataCellGray: {
-    backgroundColor: globalStyles.charcoal110,
+    backgroundColor: globalStyles.charcoal10,
   },
   dataCellGreen: {
     backgroundColor: globalStyles.green0,

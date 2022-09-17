@@ -1,23 +1,38 @@
-import { Text, StyleSheet } from 'react-native';
-import { Link } from 'react-router-native';
+import { useNavigate } from 'react-router-native';
+import { Button } from 'react-native-paper';
 import * as globalStyles from '../globalStyles';
 
+const pages = [
+  {
+    path: '/flashcards',
+    copy: 'Flashcards',
+    icon: 'cards-outline',
+  },
+  {
+    path: '/fidel-list',
+    copy: 'Fidel List',
+    icon: 'grid',
+  },
+];
+
 export default function MainMenu() {
+  const navigate = useNavigate();
+
   return(
     <>
-      <Link to='/flashcards' underlayColor={globalStyles.green40} style={styles.flashcardButton}>
-        <Text style={globalStyles.fontSize20}>Flashcards</Text>
-      </Link>
-      <Link to='/fidel-list' underlayColor={globalStyles.green40} style={styles.flashcardButton}>
-        <Text style={globalStyles.fontSize20}>Fidel List</Text>
-      </Link>
+      {pages.map((page) => (
+        <Button
+          key={page.path}
+          onPress={() => navigate(page.path)}
+          mode='contained'
+          icon={page.icon}
+          style={globalStyles.standardButton}
+          contentStyle={globalStyles.standardButtonContent}
+          labelStyle={globalStyles.standardButtonLabel}
+        >
+          {page.copy}
+        </Button>
+      ))}
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  flashcardButton: {
-    ...globalStyles.standardButton,
-    backgroundColor: globalStyles.green20,
-  }
-});

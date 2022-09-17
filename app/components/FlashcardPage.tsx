@@ -1,12 +1,50 @@
 import { useState, useEffect } from 'react';
 import {  StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Button } from 'react-native-paper';
 import { sample, sampleSize } from 'lodash';
 import * as globalStyles from '../globalStyles';
 import { Audio } from 'expo-av';
 
 import SuccessPage from '../components/SuccessPage';
 
-import fidel from '../data/fidelsArray.ts';
+import fidel from '../data/fidelsArray';
+
+const styles = StyleSheet.create({
+  allButtonsContainer: {
+    width: '80%',
+  },
+  answerButtonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  xButton: {
+    ...globalStyles.standardButton,
+    borderWidth: 1,
+    borderColor: globalStyles.red30,
+    backgroundColor: globalStyles.red0,
+  },
+  checkButton: {
+    ...globalStyles.standardButton,
+    borderWidth: 1,
+    borderColor: globalStyles.green30,
+    backgroundColor: globalStyles.green10,
+  },
+  toggleAnswerButton: {
+    ...globalStyles.standardButton,
+    marginTop: 12,
+    borderWidth: 1,
+    borderColor: globalStyles.secondaryTextColor,
+    backgroundColor: 'none',
+  },
+  toggleAnswerButtonLabel: {
+    ...globalStyles.standardButtonLabel,
+    color: globalStyles.secondaryTextColor,
+  },
+  flashcardPageButtonContent: {
+    ...globalStyles.standardButtonContent,
+    height: 80,
+  },
+});
 
 type FlashcardProps = {
   settings: {
@@ -103,53 +141,42 @@ export default function FlashcardPage({ settings: { flashcardBatchSize, keepMiss
         {showAnswer ? currentLetter?.transliteration : '_'}
       </Text>
 
-      <Text style={[globalStyles.fontSize16, { color: globalStyles.secondaryTextColor }]}>{queue.length} left</Text>
+      <Text style={[globalStyles.fontSize16, { color: globalStyles.secondaryTextColor }]}>
+        {queue.length} left
+      </Text>
+
       <View style={styles.allButtonsContainer}>
-
         <View style={styles.answerButtonsContainer}>
-          <TouchableOpacity style={styles.xOpacity} onPress={handleXPress}>
-            <Text style={globalStyles.fontSize24}>❌</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.checkOpacity} onPress={handleCheckPress}>
-            <Text style={globalStyles.fontSize24}>✅</Text>
-          </TouchableOpacity>
+          <Button
+            onPress={handleXPress}
+            mode='contained-tonal'
+            style={styles.xButton}
+            contentStyle={styles.flashcardPageButtonContent}
+            labelStyle={globalStyles.standardButtonLabel}
+          >
+              ❌
+          </Button>
+          <Button
+            onPress={handleCheckPress}
+            mode='contained-tonal'
+            style={styles.checkButton}
+            contentStyle={styles.flashcardPageButtonContent}
+            labelStyle={globalStyles.standardButtonLabel}
+          >
+              ✅
+          </Button>
         </View>
 
-        <View>
-          <TouchableOpacity style={styles.toggleAnswerOpacity} onPress={handleHelpPress}>
-            <Text style={[globalStyles.fontSize16, { color: globalStyles.secondaryTextColor }]}>
-              {renderHelpButtonText()}
-            </Text>
-          </TouchableOpacity>
-        </View>
+        <Button
+          mode='contained-tonal'
+          onPress={handleHelpPress}
+          style={styles.toggleAnswerButton}
+          contentStyle={styles.flashcardPageButtonContent}
+          labelStyle={styles.toggleAnswerButtonLabel}
+        >
+          {renderHelpButtonText()}
+        </Button>
       </View>
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  allButtonsContainer: {
-    width: '80%',
-  },
-  answerButtonsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  xOpacity: {
-    ...globalStyles.standardButton,
-    backgroundColor: globalStyles.red10,
-  },
-  checkOpacity: {
-    ...globalStyles.standardButton,
-    backgroundColor: globalStyles.green10,
-  },
-  toggleAnswerOpacity: {
-    borderWidth: 5,
-    borderColor: globalStyles.secondaryTextColor,
-    marginTop: 12,
-    minHeight: 96,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 40,
-  },
-});
