@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { StyleSheet, Switch, Text, View } from 'react-native';
+import { StyleSheet, Switch, ScrollView, View } from 'react-native';
+import { Text } from 'react-native-paper';
 import DropDownPicker from 'react-native-dropdown-picker';
 import * as globalStyles from '../globalStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -7,6 +8,37 @@ import { SettingsProps, SettingsType } from '../types/SettingsProps';
 import { cloneDeep } from 'lodash';
 
 import fidel from '../data/fidelsArray';
+
+const styles = StyleSheet.create({
+  contentContainer: {
+    width: '100%',
+  },
+  sectionTitle: {
+    marginTop: 16,
+  },
+  option: {
+    marginVertical: 16,
+  },
+  booleanOption: {
+    marginVertical: 16,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  optionText: {
+    maxWidth: '90%',
+  },
+  batchSizePicker: {
+    flex: 1,
+    minWidth: '50%',
+    maxWidth: '80%',
+  },
+  dropDownPicker: {
+    backgroundColor: '#fff',
+    padding: 8, // for web
+    flexDirection: 'row',
+    borderRadius: 5,
+  }
+});
 
 const FLASHCARD_BATCH_SIZE_CHOICES = [
   {label: '1', value: '1'},
@@ -54,49 +86,43 @@ export default function Settings({ settings, setSettings }: SettingsProps) {
   }
 
   return (
-    <>
-      <View style={styles.batchSizePicker}>
-        <Text style={styles.optionLabelText}>Flashcards</Text>
-        <Text style={styles.optionLabelText}>Flashcard Batch Size</Text>
-        <DropDownPicker
-          style={styles.dropDownPicker}
-          open={open}
-          value={String(settings.flashcardBatchSize)}
-          items={flashcardBatchSizeChoices}
-          setOpen={setOpen}
-          setValue={(choice: Function) => adjustSetting('flashcardBatchSize', choice())}
-          setItems={setFlashcardBatchSizeChoices}
-        />
-        <Text style={styles.optionLabelText}>Keep Cards in Rotation Until Answered Correctly</Text>
-        <Switch value={settings.keepMissed} onValueChange={() => toggleBooleanSetting('keepMissed')} />
-        <Text style={styles.optionLabelText}>Play Sounds</Text>
-        <Switch value={settings.shouldSpeak} onValueChange={() => toggleBooleanSetting('shouldSpeak')} />
-        <Text style={styles.optionLabelText}>Show Visual Hint</Text>
-        <Switch value={settings.showVisualHint} onValueChange={() => toggleBooleanSetting('showVisualHint')} />
+    <ScrollView contentContainerStyle={styles.contentContainer}>
 
-        <Text style={styles.optionLabelText}>Fidel</Text>
-        <Text style={styles.optionLabelText}>Show Diphthongs</Text>
-        <Switch value={!settings.diphthongFreeFidelList} onValueChange={() => toggleBooleanSetting('diphthongFreeFidelList')} />
+      <View style={styles.batchSizePicker}>
+        <Text variant='headlineLarge' style={styles.sectionTitle}>Flashcards</Text>
+        <View style={{ ...styles.option, zIndex: 1000000 }}>
+          <Text variant='bodyLarge' style={styles.optionText}>Flashcard Batch Size</Text>
+          <DropDownPicker
+            listMode='SCROLLVIEW'
+            style={styles.dropDownPicker}
+            open={open}
+            value={String(settings.flashcardBatchSize)}
+            items={flashcardBatchSizeChoices}
+            setOpen={setOpen}
+            setValue={(choice: Function) => adjustSetting('flashcardBatchSize', choice())}
+            setItems={setFlashcardBatchSizeChoices}
+          />
+        </View>
+        <View style={styles.booleanOption}>
+          <Text variant='bodyLarge' style={styles.optionText}>Keep Cards in Rotation Until Answered Correctly</Text>
+          <Switch value={settings.keepMissed} onValueChange={() => toggleBooleanSetting('keepMissed')} />
+        </View>
+        <View style={styles.booleanOption}>
+          <Text variant='bodyLarge' style={styles.optionText}>Play Sounds</Text>
+          <Switch value={settings.shouldSpeak} onValueChange={() => toggleBooleanSetting('shouldSpeak')} />
+        </View>
+        <View style={styles.booleanOption}>
+          <Text variant='bodyLarge' style={styles.optionText}>Show Visual Hint</Text>
+          <Switch value={settings.showVisualHint} onValueChange={() => toggleBooleanSetting('showVisualHint')} />
+        </View>
+
+        <Text variant='headlineLarge' style={styles.sectionTitle}>Fidels List</Text>
+        <View style={styles.booleanOption}>
+          <Text variant='bodyLarge' style={styles.optionText}>Show Diphthongs</Text>
+          <Switch value={!settings.diphthongFreeFidelList} onValueChange={() => toggleBooleanSetting('diphthongFreeFidelList')} />
+        </View>
+
       </View>
-    </>
+    </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  batchSizePicker: {
-    flex: 1,
-    minWidth: '50%',
-    maxWidth: '80%',
-  },
-  optionLabelText: {
-    fontSize: globalStyles.fontSize20.fontSize,
-    marginBottom: 8,
-    marginTop: 24,
-  },
-  dropDownPicker: {
-    backgroundColor: '#fff',
-    padding: 8, // for web
-    flexDirection: 'row',
-    borderRadius: 5,
-  }
-});

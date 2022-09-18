@@ -9,8 +9,8 @@ const pages = [
     icon: 'cards-outline',
   },
   {
-    path: '/fidel-list',
-    copy: 'Fidel List',
+    path: '/fidels-list',
+    copy: 'Fidels List',
     icon: 'grid',
   },
 ];
