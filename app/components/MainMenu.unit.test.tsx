@@ -6,6 +6,6 @@ describe("MainMenu", () => {
     it("includes two buttons", () => {
         const mockNavigate = () => {};
         const testInstance = renderer.create(<MainMenu navigate={mockNavigate}/>).root;
-        expect(testInstance.findAllByType(Button).length).toBe(2);
+        expect(testInstance.findAllByType(Button).length).toBe(3);
     });
 });

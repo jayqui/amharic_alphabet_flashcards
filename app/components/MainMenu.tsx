@@ -13,6 +13,11 @@ const pages = [
     copy: 'Fidels List',
     icon: 'grid',
   },
+  {
+    path: '/stats',
+    copy: 'Stats',
+    icon: 'chart-bar',
+  },
 ];
 
 export default function MainMenu({navigate}: MainMenuProps) {

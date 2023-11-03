@@ -13,6 +13,7 @@ import FidelsList from './app/components/FidelsList';
 import FlashcardPage from './app/components/FlashcardPage';
 import Settings from './app/components/Settings';
 import { SettingsProps, DEFAULT_SETTINGS } from './app/types/SettingsProps';
+import Stats from "./app/components/Stats"
 
 const theme = {
   ...DefaultTheme,
@@ -136,6 +137,7 @@ function MainContent({ settings, setSettings }: SettingsProps) {
         <Route path='/settings' element={
           <Settings settings={settings} setSettings={setSettings} />}
         />
+        <Route path='/stats' element={<Stats />} />
       </Routes>
     </View>
   );
