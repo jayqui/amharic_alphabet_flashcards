@@ -42,6 +42,8 @@ export const fontSize20 = { fontSize: 20 };
 export const fontSize24 = { fontSize: 24 };
 export const fontSize28 = { fontSize: 28 };
 export const fontSize48 = { fontSize: 48 };
+export const fontSize72 = { fontSize: 72 };
+export const fontSize81 = { fontSize: 81 };
 export const fontSize96 = { fontSize: 96 };
 
 // BUTTONS //

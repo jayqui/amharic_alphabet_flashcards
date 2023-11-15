@@ -10,7 +10,8 @@ type SuccessPageProps = {
 export default function SuccessPage({ handleRestartPress }: SuccessPageProps) {
   return (
     <>
-      <Text style={[globalStyles.fontSize96]}>Yay!</Text>
+      <Text style={[globalStyles.fontSize81]}>እልልልል!</Text>
+      <Text style={[globalStyles.fontSize16]}>(Yay!)</Text>
       <Button
         mode='contained'
         onPress={handleRestartPress}
