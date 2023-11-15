@@ -4,7 +4,7 @@
 
 This simple app aims to provide practice learning these letters. (As of July 2022, it is aimed at English speakers only.)
 
-![prototype demo](./readme_assets/prototype_demo.png)
+<img src='./readme_assets/prototype_demo.png' width=250>
 
 # Project Status
 
