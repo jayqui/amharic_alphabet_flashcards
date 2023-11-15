@@ -2,13 +2,13 @@
 
 [Amharic](https://en.wikipedia.org/wiki/Amharic), the official language of Ethiopia, has a writing system with over 200 letters derived from beautiful Ge'ez script.
 
-This simple app aims to provide practice learning these letters. (As of July 2022, it is aimed at English speakers only.)
+This simple app aims to provide practice learning these letters. (As of November 2023, it is aimed at English speakers only.)
 
 <img src='./readme_assets/prototype_demo.png' width=250>
 
 # Project Status
 
-The project is in active development as of July 2022. The hope is to release versions to various app stores sometime within 2022.
+The project is in active development as of November 2023. The hope is to release versions to various app stores sometime within 2024.
 
 # Development
 
