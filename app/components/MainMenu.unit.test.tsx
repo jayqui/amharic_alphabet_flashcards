@@ -1,11 +1,16 @@
-import renderer from "react-test-renderer"
+import { render, screen } from '@testing-library/react-native';
 import MainMenu from "./MainMenu"
-import { Button } from "react-native-paper"
 
-describe("MainMenu", () => {
-    it("includes two buttons", () => {
+describe("MainMenu page", () => {
+    it("includes the appropriate buttons", () => {
         const mockNavigate = () => {};
-        const testInstance = renderer.create(<MainMenu navigate={mockNavigate}/>).root;
-        expect(testInstance.findAllByType(Button).length).toBe(3);
+        render(<MainMenu navigate={mockNavigate}/>);
+
+        const buttons = screen.getAllByRole("button")
+        expect(buttons.length).toBe(3);
+        
+        expect(screen.getByText("Flashcards")).toBeTruthy()
+        expect(screen.getByText("Fidels List")).toBeTruthy()
+        expect(screen.getByText("Stats")).toBeTruthy()
     });
 });

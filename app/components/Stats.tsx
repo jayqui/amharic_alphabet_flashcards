@@ -1,6 +1,7 @@
-import { StyleSheet, ScrollView, Text } from 'react-native';
-import { Button } from 'react-native-paper';
-import * as globalStyles from '../globalStyles';
+import { StyleSheet, ScrollView, Text, View } from "react-native"
+import { Button } from "react-native-paper"
+import * as globalStyles from "../globalStyles"
+import { StatsSection } from "../types/StatsTypes"
 
 const styles = StyleSheet.create({
     clearButton: {
@@ -13,17 +14,28 @@ const styles = StyleSheet.create({
         ...globalStyles.standardButtonLabel,
         color: globalStyles.red40,
     },
-});
+})
 
 export default function Stats() {
+    const todayStats = {
+        percentCorrect: 100,
+        mostCorrectLetters: ["ቫ", "ቿ", "ሀ", "ሯ", "ው"],
+        mostMissedLetters: ["ሑ", "መ", "ሄ", "ራ", "ሺ"],
+    }
+    const allTimeStats = {
+        percentCorrect: 99,
+        mostCorrectLetters: ["ቫ", "ቿ", "ሌ", "ሯ", "ሙ"],
+        mostMissedLetters: ["ሿ", "መ", "ሄ", "ሮ", "ሺ"],
+    }
+    
     return (
         <ScrollView>
-            <Text> Stats </Text>
-            {renderStatsThing('Today')}
-            {renderStatsThing('All Time')}
+            <Text style={{...globalStyles.fontSize48, marginBottom: 20}}> Stats </Text>
+            {renderStatsSection("Today", todayStats)}
+            {renderStatsSection("All Time", allTimeStats)}
             <Button
-                mode='contained-tonal'
-                icon='trash-can-outline'
+                mode="contained-tonal"
+                icon="trash-can-outline"
                 style={styles.clearButton}
                 contentStyle={globalStyles.standardButtonContent}
                 labelStyle={styles.clearButtonLabel}
@@ -31,16 +43,21 @@ export default function Stats() {
                 Clear Stats
             </Button>
         </ScrollView>
-    );
+    )
 }
 
-function renderStatsThing(heading: string) {
-    return(
-        <>
-            <Text style={globalStyles.fontSize48}>{heading}</Text>
-            <Text>Percent Correct</Text>
-            <Text>Most Missed Letters:</Text>
-            <Text>Most Correct Letters:</Text>
-        </>
-    );
+
+
+function renderStatsSection(
+    heading: string,
+    { percentCorrect, mostCorrectLetters, mostMissedLetters }: StatsSection,
+) {
+    return (
+        <View style={{marginBottom: 20}}>
+            <Text style={globalStyles.fontSize24}>{heading}</Text>
+            <Text>Percent Correct: {percentCorrect}%</Text>
+            <Text>Most Correct Letters: {mostCorrectLetters.join(", ")}</Text>
+            <Text>Most Missed Letters: {mostMissedLetters.join(", ")}</Text>
+        </View>
+    )
 }

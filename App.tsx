@@ -12,7 +12,7 @@ import MainMenu from './app/components/MainMenu';
 import FidelsList from './app/components/FidelsList';
 import FlashcardPage from './app/components/FlashcardPage';
 import Settings from './app/components/Settings';
-import { SettingsProps, DEFAULT_SETTINGS } from './app/types/SettingsProps';
+import { SettingsTypes, DEFAULT_SETTINGS } from './app/types/SettingsTypes';
 import Stats from "./app/components/Stats"
 
 const theme = {
@@ -125,7 +125,7 @@ function NavBar() {
   );
 }
 
-function MainContent({ settings, setSettings }: SettingsProps) {
+function MainContent({ settings, setSettings }: SettingsTypes) {
   const navigate = useNavigate();
   
   return(

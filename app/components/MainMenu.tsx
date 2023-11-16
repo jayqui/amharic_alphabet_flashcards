@@ -1,6 +1,6 @@
 import { Button } from 'react-native-paper';
 import * as globalStyles from '../globalStyles';
-import { MainMenuProps } from '../types/MainMenuProps';
+import { MainMenuTypes } from '../types/MainMenuTypes';
 
 const pages = [
   {
@@ -20,7 +20,7 @@ const pages = [
   },
 ];
 
-export default function MainMenu({navigate}: MainMenuProps) {
+export default function MainMenu({navigate}: MainMenuTypes) {
   return(
     <>
       {pages.map((page) => (
