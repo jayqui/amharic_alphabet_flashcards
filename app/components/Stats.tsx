@@ -55,9 +55,9 @@ function renderStatsSection(
     return (
         <View style={{marginBottom: 20}}>
             <Text style={globalStyles.fontSize24}>{heading}</Text>
-            <Text>Percent Correct: {percentCorrect}%</Text>
-            <Text>Most Correct Letters: {mostCorrectLetters.join(", ")}</Text>
-            <Text>Most Missed Letters: {mostMissedLetters.join(", ")}</Text>
+            <Text style={globalStyles.fontSize18}>Percent Correct: {percentCorrect}%</Text>
+            <Text style={globalStyles.fontSize18}>Most Correct Letters: {mostCorrectLetters.join(", ")}</Text>
+            <Text style={globalStyles.fontSize18}>Most Missed Letters: {mostMissedLetters.join(", ")}</Text>
         </View>
     )
 }
